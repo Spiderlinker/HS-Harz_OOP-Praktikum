@@ -1,268 +1,264 @@
-// ---------- C++ Tutorial 3  ----------
+// ---------- C++ Tutorial Example 1 ----------
  
-std::vector<int> myVec(10);
-    
-    // Generates incremental values starting at 0 and places
-    // them in the vector provided
-    
-    // begin points at the 1st index and end points at the last
-    // in the vector
-    std::iota(std::begin(myVec), std::end(myVec), 0);
-    
-    // We can output the vector using a standard for loop
-    for(int i = 0; i < myVec.size(); ++i){
-        std::cout << myVec[i] << "\n";
-    }
-    
-    // An abbreviated for loop is also available
-    // auto determines the data type based on the value
-    // y is assigned each value in the vector incrementing
-    // the index by 1 each time through the loop
-    for(auto y: myVec) std::cout << y << "\n";
-    
-    // Find if a value is even / odd with modulus
-    int val = 8;
-    if((val % 2) == 0){
-        std::cout << val << " is Even\n";
-    } else {
-        std::cout << val << " is Odd\n";
-    }
-    
-    // ----- PROBLEM : GENERATE VECTOR (1 - 10) AND PRINT EVENS ----- 
-    
-    std::vector<int> myVec2(10);
-    std::iota(std::begin(myVec2), std::end(myVec2), 1);
-    
-    // We can print just even numbers with modulus
-    for(auto y: myVec2){
-        if((y % 2) == 0)
-            std::cout << y << "\n";
-    }
-    
-    // ----- END OF PROBLEM -----
-    
-    #include <cstdlib>
+/* 
+ * Multi-line Comment
+ */
+ 
+// These are called preprocessor directives
+// They load the files which contain premade functions 
+// for your use
+ 
+// Contains functions for converting from 1 data type to
+// another, random number generation, memory management,
+// searching, math, sorting and other general purpose functions
+#include <cstdlib>
+ 
+// Provides functions for performing input and output operations
 #include <iostream>
+ 
+// If used you can type cout instead of std::cout
+// By using this though you may have conflicts if you define
+// functions that share a name with the std namespace
+// using namespace std;
+ 
+// You could define you only want to use part of a namespace like
+// using std::cout;
+// Which would allow you to use cout instead of std::cout
+ 
+// Execution of code starts in the main function
+// argc and argv is optional data that could be passed
+// to the program if it was executed in a terminal
+// argc : Number of arguments passed
+// argv : Array pointers to strings
+int main(int argc, char* argv[]) {
+     
+    // Outputs the string Hello World to the screen followed by a newline
+    // cout is your console or screen
+    // << : Stream insertion operator which puts the string
+    // into the cout stream to display it
+    std::cout << "Hello World" << std::endl;
+    
+    // If you compile the code into an executable program in the terminal
+    // g++ main.cpp
+    // And execute it : ./a.out I Love C++
+    // You'd see how to work with passed arguments
+    
+    // If no arguments are passed argc has a value of 1
+    // We check that with if to skip printing values if none were passed
+    if(argc != 1){
+    
+        // You can also create a newline with \n
+        std::cout << "You entered " << argc << " arguments\n";
+    
+        // Cycles through all the values in the argc array and prints them
+        // We access the values by using their index number starting at
+        // 0 
+        for(int i = 0; i < argc; ++i){
+        
+            // We access each string passed by putting its index between []
+            // called the subscript operator
+            std::cout << argv[i] << "\n";
+        }
+    }
+    
+    // When 0 is returned that signals that the program executed without 
+    // an error and -1 signals an error occurred 
+    return 0;
+}
+ 
+// ---------- End of C++ Tutorial Example 1 ----------
+ 
+// ---------- C++ Tutorial Example 2 ----------
+ 
+#include <cstdlib>
+#include <iostream>
+ 
+// Allows you to use the STL string class
 #include <string>
-#include <vector>
-#include <sstream>
  
-// Needed for std::iota
-#include <numeric>
+// Provides functions to find min and max values
+// for data types
+#include <limits>
  
-// ----- FUNCTION PROTOTYPES -----
-// You define the return type and data types for functions
-// using a function prototype so main knows what is to be expected
-// from this function
-double AddNumbers(double num1, double num2);
+// When we create a variable we are telling the computer
+// how much memory to set aside for its value and what
+// name we want to associate with that data
+    
+// Variable names can contain letters, numbers, underscores
+// but not math operators, spaces and can't start with a number
  
-void AssignName();
+// Global variables are declared outside of any functions
+// and can be accessed any where in the code
+// This is a global integer variable with a name using 
+// Hungarian notation
+int g_iRandNum = 0;
  
-void AssignAge(int age);
- 
-int AssignAge2(int age);
- 
-// This function receives pointers
-void AssignAge3(int* pAge);
- 
-// Double values in array passed
-void DoubleArray(int *arr, int size);
- 
-// ----- END OF FUNCTION PROTOTYPES -----
+// const defines constant values that won't change
+const double PI = 3.1415926535897932;
  
 int main() {
+     
+    // Get min and max values for different data types
     
-    // ----- FUNCTIONS -----
-    // Code that gets above 8 to 10 lines should be broken off
-    // into a separate function to better organize your code
-    // and to promote reuse
+    // bools store true 1, or false 0
+    bool bMarried = true;
     
-    double num1, num2;
+    // char stores 256 single characters represented by your keyboard
+    char chMyGrade = 'A';
     
-    std::cout << "Enter Num 1 : ";
+    // unsigned short ints hold values from 0 to 65,535
+    // unsigned int & unsigned long int double their max value
+    unsigned short int u16Age = 43;
     
-    // An alternative way to store a value
-    std::cin >> num1;
-            
-    std::cout << "Enter Num 2 : ";
-    std::cin >> num2;
+    // short ints store between -32,768 to 32,767
+    short int siWeight = 180;
     
-    // Call the function 
-    printf("%.1f + %.1f = %.1f\n", num1, num2, AddNumbers(num1, num2));
+    // ints range from -2147483648 to 2147483647
+    int nDays = 7;
     
-    // Variables in a function are local to that function
-    // Undeclared identifier error
-    // std::cout << name;
+    // long ints and long long ints range from -9223372036854775808 to 
+    // 9223372036854775807
+    long lBigNum = 1000000;
     
-    // Variables values changed in a function don't 
-    // translate globally
-    int age = 43;
-    AssignAge(age);
-    std::cout << "New Age " << age << "\n";
+    // floats range from 1.17549e-38 to 3.40282e+38
+    float fPi = 3.14159;
     
-    // You could change the value by passing it back
-    age = AssignAge2(age);
-    std::cout << "New Age " << age << "\n";
+    // Show float precision
+    float fBigFloat = 1.1111111111;
+    float fBigFloat2 = 1.1111111111;
+    float fFloatSum = fBigFloat + fBigFloat2;
     
-    // A Pointer stores a address in memory
-    // You declare a pointer to be of the same type as the data 
-    // type to which it points
-    // If you are storing the address of an int then the 
-    // pointer is an int
-    // When you declare a pointer give it a null value
-    int* pAge = NULL;
+    // Allows you to print with formatting
+    // Float addition has 6 digits of precision
+    printf("fFloatSum Precision : %.10f\n", fFloatSum);
     
-    // The reference operator returns the address for a 
-    // variable that can be stored in a pointer
-    pAge = &age;
+    // doubles range from 2.22507e-308 to 1.79769e+308
     
-    // Print the address Hexidecimal Number
-    std::cout << "Address : " << pAge << "\n";
+    std::cout << "Min double " << 
+            std::numeric_limits<double>::min() << "\n";
+    std::cout << "Max double " << 
+            std::numeric_limits<double>::max() << "\n";
     
-    // Get the value at that address with the dereference operator
-    std::cout << "Value at Address : " << *pAge << "\n";
+    // Show double precision
+    double dbBigFloat = 1.11111111111111111111;
+    double dbBigFloat2 = 1.11111111111111111111;
+    double dbFloatSum = dbBigFloat + dbBigFloat2;
     
-    // We can create a pointer to an array and cycle through
-    // the data with ++ and --
-    int intArray[] = {1,2,3,4};
-    int* pIntArray = intArray;
+    // Allows you to print with formatting
+    // Double addition has 15 digits of precision
+    printf("dbFloatSum Precision : %.20f\n", dbFloatSum);
     
-    std::cout << "1st " << *pIntArray << " Address " << pIntArray << "\n";
-    pIntArray++;
-    std::cout << "2nd " << *pIntArray << " Address " << pIntArray << "\n";
-    pIntArray--;
-    std::cout << "1st"
-            " " << *pIntArray << " Address " << pIntArray << "\n";
+    // long doubles range from 3.3621e-4932 to 1.18973e+4932
+    long double ldPi = 3.1415926535897932;
     
-    // You can pass a pointer to a function and then the function
-    // can change that variables value globally
-    age = 43;
+    // You can have the compiler assign a type
+    auto whatWillIBe = true;
     
-    // Send the address for age to the function
-    AssignAge3(&age);
+    // SHOW DATA TYPES MIN & MAX VALUES
     
-    std::cout << "Pointer Age " << age << "\n";
+    std::cout << "Min bool " << std::numeric_limits<bool>::min() << "\n";
+    std::cout << "Max bool " << std::numeric_limits<bool>::max() << "\n";
     
-    // Create an array and double values
-    int arr[] = {1,2,3,4};
-    DoubleArray(arr, 4);
-    for(int i = 0; i < 4; ++i){
-        std::cout << "Array " << arr[i] << "\n";
-    }
+    std::cout << "Min unsigned short int " << 
+            std::numeric_limits<unsigned short int>::min() << "\n";
+    std::cout << "Max unsigned short int " << 
+            std::numeric_limits<unsigned short int
+            >::max() << "\n";
+    
+    std::cout << "Min short int " << 
+            std::numeric_limits<short int>::min() << "\n";
+    std::cout << "Max short int " << 
+            std::numeric_limits<short int
+            >::max() << "\n";
+ 
+    std::cout << "Min int " << std::numeric_limits<int>::min() << "\n";
+    std::cout << "Max int " << std::numeric_limits<int>::max() << "\n";
+ 
+    std::cout << "Min long " << std::numeric_limits<long int>::min() << "\n";
+    std::cout << "Max long " << std::numeric_limits<long int>::max() << "\n";
+ 
+    std::cout << "Min float " << 
+            std::numeric_limits<float>::min() << "\n";
+    std::cout << "Max float " << 
+            std::numeric_limits<float>::max() << "\n";
+    
+    std::cout << "Min long double " << 
+            std::numeric_limits<long double>::min() << "\n";
+    std::cout << "Max long double " << 
+            std::numeric_limits<long double>::max() << "\n";
+    
+    // Get the number of bytes used by a type
+    std::cout << "int Size " << sizeof(int) << "\n";
+    
+    // More about printf()
+    // char, int, 5 space right justified int, 
+    // 3 decimal float / double, string specifiers
+    printf("%c %d %5d %.3f %s\n", 'A', 10, 5, 3.1234, "Hi");
     
     return 0;
 }
  
-// ----- FUNCTIONS -----
-// A function starts with the data type it will return or void
-// if no value is returned
-// You also list the data types for the parameters passed into 
-// a function and you may assign them default values
+// ---------- End of C++ Tutorial Example 2 ----------
  
- 
-double AddNumbers(double num1 = 0, double num2 = 0){
-    return num1 + num2;
-}
- 
-// A variable created inside a function can't be accessed 
-// outside of it
-void AssignName(){
-    std::string name = "Derek";
-}
- 
-void AssignAge(int age){
-    age = 24;
-}
- 
-int AssignAge2(int age){
-    age = 24;
-    return age;
-}
- 
-// Function that receives a pointer
-void AssignAge3(int* pAge){
-    
-    // Use dereference operator to change the value at the address
-    *pAge = 22;
-    
-}
- 
-// Double values in array
-void DoubleArray(int *arr, int size){
-    for(int i = 0; i < size; ++i){
-        arr[i] = arr[i] * 2;
-    }
-}
- 
-// ----- FUNCTIONS -----
+// ---------- C++ Tutorial Example 3 ----------
  
 #include <cstdlib>
 #include <iostream>
 #include <string>
-#include <vector>
- 
-std::vector<int> Range(int start, int max, int step);
  
 int main() {
+     
+    // Create a string
+    std::string sQuestion ("Enter Number 1 : ");
     
-    // ----- PROBLEM CREATE A RANGE FUNCTION -----
-    // Create a function that receives a starting value,
-    // max value and an increment amount between
-    // values and receive a vector in return
+    // Create empty strings to store values
+    std::string sNum1, sNum2;
     
-    std::vector<int> range = Range(1, 10, 2);
+    std::cout << sQuestion;
     
-    // Cycle through the vector
-    for(auto y: range){
-        std::cout << y << "\n";
-    }
+    // Receive user input and store it
+    getline(std::cin, sNum1);
     
-    // ----- END PROBLEM CREATE A RANGE FUNCTION -----
+    std::cout << "Enter Number 2 : ";
+    getline(std::cin, sNum2);
     
-    // ----- PROBLEM CALCULATE COMPOUNDING INTEREST -----
-    double investment = 0.0;
-    double interestRate = 0.0;
+    // Convert from strings to int
+    // std::stod converts from strings to doubles
+    int nNum1 = std::stoi(sNum1);
+    int nNum2 = std::stoi(sNum2);
     
-    std::cout << "How much to invest : ";
-    std::cin >> investment;
-    std::cout << "Interest Rate : ";
-    std::cin >> interestRate;
+    // Math Operators
+    printf("%d + %d = %d\n", nNum1, nNum2, (nNum1 + nNum2));
+    printf("%d - %d = %d\n", nNum1, nNum2, (nNum1 - nNum2));
+    printf("%d * %d = %d\n", nNum1, nNum2, (nNum1 * nNum2));
+    printf("%d / %d = %d\n", nNum1, nNum2, (nNum1 / nNum2));
+    printf("%d %% %d = %d\n", nNum1, nNum2, (nNum1 % nNum2));
     
-    // Convert to a percent
-    interestRate *= .01;
+    // ----- PROBLEM : MILES TO KILOMETERS -----
+    // Sample knowing that kilometers = miles * 1.60934
+    // Enter Miles : 5
+    // 5 miles equals 8.0467 kilometers
     
-    for(auto y: Range(1,10,1)){
-        investment = investment + (investment * interestRate);
-    }
+    // Create needed variables
+    std::string sMiles;
+    double dMiles, dKilometers;
     
-    std::cout << "Value after 10 years : " << investment <<
-            "\n";
+    // Ask user to input miles and store string input
+    std::cout << "Enter Miles : ";
+    getline(std::cin, sMiles);
     
-    // ----- END PROBLEM CALCULATE COMPOUNDING INTEREST -----
+    // Convert from string to double
+    dMiles = std::stod(sMiles);
+    
+    // Convert from miles to km
+    dKilometers = dMiles * 1.60934;
+    
+    // Output the results
+    printf("%.1f miles equals %.4f kilometers\n", dMiles, dKilometers);
+    
+    // ----- END PROBLEM : MILES TO KILOMETERS -----
     
     return 0;
 }
  
-std::vector<int> Range(int start, int max, int step){
-    
-    // Every while statement needs an index to start with
-    int i = start;
-    
-    // Will hold returning vector
-    std::vector<int> range;
-    
-    // Make sure we don't go past max value
-    while(i <= max){
-        
-        // Add value to the vector
-        range.push_back(i);
-        
-        // Increment the required amount
-        i += step;
-    }
-    
-    return range;
-    
-}
- 
-// ---------- End of C++ Tutorial 3  ----------
+// ---------- End of C++ Tutorial Example 3 —————
