@@ -1,0 +1,16 @@
+﻿Der Buildvorgang wurde am 05.12.2019 16:48:13 gestartet.
+     1>Projekt "X:\OOP_Praktikum\Praktikum_1\Download\Projekt-Firma\Firma-2019\lib\Firma\Firma.vcxproj" auf Knoten "2", Build Ziel(e).
+     1>ClCompile:
+         C:\Program Files\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I..\..\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt /D "_CRT_SECURE_NO_DEPRECATE" ..\..\src\Chefin.cpp
+         Chefin.cpp
+       Lib:
+         C:\Program Files\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"X:\OOP_Praktikum\Praktikum_1\Download\Projekt-Firma\Firma-2019\test\Debug\Firma.lib" /LIBPATH:..\..\lib\Firma\lib /NOLOGO Debug\Abteil.obj
+         Debug\Chefin.obj
+         Debug\Mitarb.obj
+         Debug\Sekr.obj
+         Firma.vcxproj -> X:\OOP_Praktikum\Praktikum_1\Download\Projekt-Firma\Firma-2019\test\Debug\Firma.lib
+     1>Die Erstellung des Projekts "X:\OOP_Praktikum\Praktikum_1\Download\Projekt-Firma\Firma-2019\lib\Firma\Firma.vcxproj" ist abgeschlossen, Build Ziel(e).
+
+Build erfolgreich.
+
+Verstrichene Zeit 00:00:01.23
